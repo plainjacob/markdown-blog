@@ -4,7 +4,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config:
   """Base configuration with settings common to all environments."""
-  SECRET_KEY = os.environ.get('SECRET_KEY')
+  SECRET_KEY = os.environ.get('SECRET_KEY') or 'my_secret_key'
   FLATPAGES_EXTENSION = '.md'
   FLATPAGES_ROOT = 'content'
   POST_DIR = 'posts'

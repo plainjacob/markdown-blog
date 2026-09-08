@@ -1,4 +1,4 @@
-{% for post in posts %}
+{% extends "base.html" %} {% for post in posts %}
 <a href="{{ url_for('main.post', name=post.path.replace('posts/', '')) }}">
   {{ post.title }}
 </a>

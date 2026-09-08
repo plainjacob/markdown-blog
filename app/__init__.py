@@ -23,15 +23,19 @@ def create_app(config_name='development'):
   # Initialize extensions with this app instance
   db.init_app(app)
   migrate.init_app(app, db)
-  login_manager.init_app(app)
+  login_manager.init_app(app) 
   pages.init_app(app)
 
+  from app.models.user import User
+  @login_manager.user_loader
+  def load_user(user_id):
+      return User.query.get(int(user_id))
+
   # Register blueprints
-  from app.posts import posts_bp
-  from app.auth import auth_bp
+  from app.posts import bp as posts_bp
+  from app.auth import bp as auth_bp
 
   app.register_blueprint(posts_bp)
-  app.register_blueprint(auth_bp, url_prefix='/auth')
+  app.register_blueprint(auth_bp)
 
   return app
-
