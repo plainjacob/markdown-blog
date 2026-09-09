@@ -1,1 +1,4 @@
-{% extends "base.html" %} {{ post.title }} {{ post.date }} {{ post.html|safe }}
+{% extends "base.html" %}{% block header %}
+<h1>{% block title %}{{ post.title }}{% endblock %}</h1>
+{% endblock %} {% block content %} {{ post.date }} {{ post.html|safe }} {%
+endblock %}

@@ -1,10 +1,11 @@
 import sqlalchemy as sa
-from flask import flash, render_template, redirect, url_for
+from flask import flash, render_template, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user
 from app.auth import bp
 from app.forms import RegisterForm, LoginForm
 from app.models.user import User
 from app.extensions import db
+from urllib.parse import urlsplit
 
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
@@ -52,7 +53,12 @@ def login():
 
     login_user(user, remember=form.remember_me.data)
     flash('Succesfully logged in!')
-    return redirect(url_for('main.index'))
+
+    # Redirect user
+    next_page = request.args.get('next')
+    if not next_page or urlsplit(next_page).netloc != '':
+      next_page = url_for('main.index')
+    return redirect(next_page)
   return render_template('login.html', title='Login', form=form)
 
 

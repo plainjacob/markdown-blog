@@ -18,6 +18,9 @@
       <li>
         <a href="{{ url_for('main.index') }}">Home</a>
       </li>
+      <li>
+        <a href="{{ url_for('posts.posts')}}">Posts</a>
+      </li>
       {% if current_user.is_anonymous %}
       <li>
         <a href="{{ url_for('auth.login') }}">Login</a>

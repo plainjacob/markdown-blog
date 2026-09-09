@@ -11,5 +11,5 @@ login_manager = LoginManager()
 pages = FlatPages()
 
 # Configure login manager
-login_manager.login_view = 'login'
+login_manager.login_view = 'auth.login'
 login_manager.login_message = 'Please log in to access this page.'

@@ -4,16 +4,6 @@ from app.extensions import db, migrate, login_manager, pages
 
 
 def create_app(config_name='development'):
-  """
-  Application factory function.
-
-  Args:
-    config_name: Name of the configuration to use (development, testing, production)
-
-  Returns:
-    Configured Flask application instance
-  """
-
   # Create the Flask application instance
   app = Flask(__name__)
 
@@ -26,16 +16,22 @@ def create_app(config_name='development'):
   login_manager.init_app(app) 
   pages.init_app(app)
 
-  from app.models.user import User
-  @login_manager.user_loader
-  def load_user(user_id):
-      return User.query.get(int(user_id))
+  # from app.models.user import User
+  # @login_manager.user_loader
+  # def load_user(user_id):
+  #     return User.query.get(int(user_id))
 
   # Register blueprints
-  from app.posts import bp as posts_bp
-  from app.auth import bp as auth_bp
+  from app.main import bp as main_bp
+  app.register_blueprint(main_bp)
 
-  app.register_blueprint(posts_bp)
+  from app.auth import bp as auth_bp
   app.register_blueprint(auth_bp)
 
+  from app.posts import bp as posts_bp
+  app.register_blueprint(posts_bp)
+
   return app
+
+
+from app import models
