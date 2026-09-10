@@ -16,6 +16,5 @@ def posts():
 @login_required
 def post(name):
   path = '{}/{}'.format(Config.POST_DIR, name)
-  print(path)
   post = pages.get_or_404(path)
   return render_template('post.html', post=post)

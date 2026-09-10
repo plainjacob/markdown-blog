@@ -2,4 +2,10 @@
 <h1>{% block title %}{{ title }}{% endblock %}</h1>
 {% endblock %} {% block content %}
 <h2>Hi, {{ current_user.username }}</h2>
+<div>
+  <h2>Latest Article</h2>
+  <a href="{{ url_for('posts.post', name=latest.path.replace('posts/', '')) }}"
+    >{{latest.title}}</a
+  >
+</div>
 {% endblock %}

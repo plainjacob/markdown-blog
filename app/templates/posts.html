@@ -1,8 +1,14 @@
 {% extends "base.html" %} {% block header %}
 <h1>{% block title %}{{ title }}{% endblock %}</h1>
-{% endblock %} {% block content %} {% for post in posts %}
-<a href="{{ url_for('posts.post', name=post.path.replace('posts/', '')) }}">
-  {{ post.title }}
-</a>
-<small>{{ post.small }}</small>
-{% endfor %} {% endblock %}
+{% endblock %} {% block content %}
+<ul>
+  {% for post in posts %}
+  <li>
+    <a href="{{ url_for('posts.post', name=post.path.replace('posts/', '')) }}">
+      {{ post.title }}
+    </a>
+    <small>{{ post.small }}</small>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
