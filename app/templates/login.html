@@ -3,9 +3,28 @@
 {% endblock %} {% block content %}
 <form action="/login" method="post">
   {{ form.csrf_token }}
-  <p>{{ form.username.label }}{{ form.username() }}</p>
-  <p>{{ form.password.label }}{{ form.password() }}</p>
-  <p>{{ form.remember_me() }}{{ form.remember_me.label }}</p>
+  <!-- USERNAME -->
+  <p>
+    {{ form.username.label }}{{ form.username() }} {% for error in
+    form.username.errors %}
+    <span style="color: red">[{{ error }}]</span>
+    {% endfor %}
+  </p>
+  <!-- PASSWORD -->
+  <p>
+    {{ form.password.label }}{{ form.password() }} {% for error in
+    form.password.errors %}
+    <span style="color: red">[{{ error }}]</span>
+    {% endfor %}
+  </p>
+  <!-- REMEMBER ME -->
+  <p>
+    {{ form.remember_me() }}{{ form.remember_me.label }} {% for error in
+    form.remember_me.errors %}
+    <span style="color: red">[{{ error }}]</span>
+    {% endfor %}
+  </p>
+  <!-- SUBMIT -->
   <p>{{ form.submit() }}</p>
 </form>
 <p>New user? <a href="{{ url_for('auth.register') }}">Register</a></p>

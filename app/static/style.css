@@ -1,0 +1,18 @@
+/* NAV BAR */
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+nav > li {
+  list-style-type: none;
+}
+
+nav > li > a {
+  text-decoration: none;
+}
+
+/* FLASH */
+.notification {
+  list-style-type: none;
+}

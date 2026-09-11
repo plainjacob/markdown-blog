@@ -6,6 +6,7 @@ from app.extensions import db
 from app.models.user import User
 
 
+# REGISTER FORM
 class RegisterForm(FlaskForm):
   username = StringField('Username', validators=[DataRequired()])
   email = StringField('Email', validators=[DataRequired(), Email()])
@@ -27,8 +28,15 @@ class RegisterForm(FlaskForm):
     if user is not None:
       raise ValidationError('Email address is already registered.')
 
+# LOGIN FORM
 class LoginForm(FlaskForm):
   username = StringField('Username', validators=[DataRequired()])
   password = PasswordField('Password', validators=[DataRequired()])
   remember_me = BooleanField('Remember Me')
   submit = SubmitField('Sign In')
+
+
+# EDIT PROFILE FORM
+class EditProfileForm(FlaskForm):
+  username = StringField('Username', validators=[DataRequired()])
+  submit = SubmitField('Submit')

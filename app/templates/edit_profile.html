@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block header %}
+<h1>{% block title %}{{ title }}{% endblock %}</h1>
+{% endblock %}{% block content %}
+<form action="" method="post">
+  {{ form.csrf_token}}
+  <!-- USERNAME -->
+  <p>
+    {{ form.username.label }}{{ form.username() }} {% for error in
+    form.username.errors %}
+    <span style="color: red">[{{ error }}]</span>
+    {% endfor %}
+  </p>
+  <!-- SUBMIT -->
+  <p>{{ form.submit() }}</p>
+</form>
+{% endblock %}
